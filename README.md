@@ -14,6 +14,10 @@ $ npm run deploy
 
 ## Known Issues
 
+**Recommended Browser: Chrome**
+
 On Safari, You have to press <kbd>Command+S</kbd> or <kbd>Ctrl+S</kbd> to export as JSON file in the opened page.
 
 On Safari and IE, `input` types `date` and `time` are not supported in `/add` page.
+
+On IE 10 and below, `FileReader` is not supported well.
