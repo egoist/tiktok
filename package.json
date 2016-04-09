@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tooling watch -u vue",
-    "build": "tooling build -u vue",
+    "build": "tooling build -u vue --clean",
     "deploy": "npm run build && gh-pages -d build"
   },
   "author": "",
