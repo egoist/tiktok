@@ -75,7 +75,7 @@
 					{{ item | timer }} days
 				</div>
 				<div class="item-main">
-					<h2 class="item-title">{{ item.title }}</h2>
+					<h2 class="item-title">距离{{ item.title }}已经</h2>
 					<div class="item-description">{{ item.description }}</div>
 					<div class="item-meta">
 						<span class="item-remove" @click="removeItem(item.id)">Remove</span>
