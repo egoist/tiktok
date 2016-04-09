@@ -55,11 +55,11 @@
 			& .item-timer {
 				position: absolute;
 				width: auto;
-				left: 0;
+				left: -10px;
 				transform: translateX(-100%);
 			}
 			& .item-main {
-				padding-left: 10px;
+				padding-left: 0px;
 			}
 		}
 	}
