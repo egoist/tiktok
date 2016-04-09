@@ -68,9 +68,11 @@
 <template>
 	<div class="page-home">
 		<a class="pure-button pure-button-primary" v-link="{path: '/add'}">Add A Tok</a>
-		<button @click="exportAsJSON" class="pure-button pure-button-success">Export As JSON</button>
+		<button @click="exportAsJSON" class="pure-button button-warning">Export As JSON</button>
+		<button @click="getFile" class="pure-button button-info">Import from JSON</button>
+		<input @change="readFile" accept=".json" type="file" style="display: none;" v-el:file>
 		<div class="list">
-			<div class="item" v-for="item in list">
+			<div class="item" v-for="item in list" track-by="$index">
 				<div class="item-timer">
 					{{ item | timer }} days
 				</div>
@@ -87,25 +89,45 @@
 </template>
 
 <script>
+	import uniqBy from 'lodash.uniqby'
 	import {saveAs} from '../modules/file-saver'
 	import {getAll, override} from '../store'
 
 	export default {
 		data() {
 			return {
-				list: getAll().reverse()
+				list: getAll()
 			}
 		},
 		methods: {
 			removeItem(id) {
 				this.list = this.list.filter(item => item.id !== id)
-				override(this.list)
+				override(uniqBy(this.list, 'id'))
 			},
 			exportAsJSON() {
 				const content = new Blob([JSON.stringify(this.list, null, 2)], {
 					type: 'application/json;charset=utf-8'
 				})
 				saveAs(content, `tiktok-${new Date()}.json`)
+			},
+			getFile() {
+				this.$els.file.click()
+			},
+			readFile(e) {
+				const file = e.target.files[0]
+				const reader = new FileReader()
+				reader.readAsText(file)
+				reader.onload = () => {
+					const result = JSON.parse(reader.result)
+					if (!result || !result.length || result.length === 0) {
+						return alert('Invalid JSON file')
+					}
+					this.list = uniqBy([
+						...result,
+						...this.list
+					], 'id')
+					override(this.list)
+				}
 			}
 		},
 		filters: {

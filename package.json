@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "lodash.uniqby": "^4.3.0",
     "purecss": "^0.6.0",
     "random-string": "^0.1.2",
     "vue-router": "^0.7.13"

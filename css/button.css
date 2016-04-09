@@ -1,3 +1,13 @@
 .button-large {
 	font-size: 110%;
 }
+
+.button-warning {
+  background: rgb(223, 117, 20);
+	color: white;
+}
+
+.button-info {
+	background: rgb(66, 184, 221);
+	color: white;
+}

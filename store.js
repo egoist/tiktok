@@ -1,6 +1,9 @@
 export function addItem(item) {
-	const items = getAll()
-	items.push(item)
+	let items = getAll()
+	items = [
+		item,
+		...items
+	]
 	localStorage.setItem('tiktoks', JSON.stringify(items))
 }
 
