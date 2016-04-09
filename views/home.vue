@@ -67,7 +67,8 @@
 
 <template>
 	<div class="page-home">
-		<a class="pure-button pure-button-primary" v-link="{path: '/add'}">Add a tok</a>
+		<a class="pure-button pure-button-primary" v-link="{path: '/add'}">Add A Tok</a>
+		<button @click="exportAsJSON" class="pure-button pure-button-success">Export As JSON</button>
 		<div class="list">
 			<div class="item" v-for="item in list">
 				<div class="item-timer">
@@ -86,6 +87,7 @@
 </template>
 
 <script>
+	import {saveAs} from '../modules/file-saver'
 	import {getAll, override} from '../store'
 
 	export default {
@@ -98,6 +100,12 @@
 			removeItem(id) {
 				this.list = this.list.filter(item => item.id !== id)
 				override(this.list)
+			},
+			exportAsJSON() {
+				const content = new Blob([JSON.stringify(this.list, null, 2)], {
+					type: 'application/json;charset=utf-8'
+				})
+				saveAs(content, `tiktok-${new Date()}.json`)
 			}
 		},
 		filters: {
