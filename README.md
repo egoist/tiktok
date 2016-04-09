@@ -1,5 +1,7 @@
 # Tik Tok
 
+![preview](https://ooo.0o0.ooo/2016/04/08/57087c823acb9.png)
+
 ```bash
 # prerequirements
 $ npm i -g tooling
