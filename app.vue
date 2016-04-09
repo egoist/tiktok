@@ -50,6 +50,7 @@
 <style src="./css/button"></style>
 
 <template>
+	<github></github>
 	<div class="container">
 		<h2 class="site-name">
 			<a v-link="{path: '/'}">Tik Tok</a>
@@ -63,11 +64,14 @@
 
 
 <script>
+	import github from './components/github'
+
 	export default {
 		data() {
 			return {
 				year: new Date().getFullYear()
 			}
-		}
+		},
+		components: {github}
 	}
 </script>
